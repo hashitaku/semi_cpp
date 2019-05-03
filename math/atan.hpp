@@ -38,6 +38,11 @@ constexpr Type atan(Type x){
 
         retval = (semi_cpp::math::math_const<Type>::pi / 2.0) - (x / (1 + retval));
     }else{
+        while(n > 0){
+            retval = ((n * n) * (x * x)) / ((2 * n + 1) + retval);
+            n--;
+        }
+        
         retval = x / (1 + retval);
     }
 
