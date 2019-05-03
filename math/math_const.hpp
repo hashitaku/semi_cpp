@@ -17,7 +17,7 @@ namespace semi_cpp::math{
  */
 template<typename Type>
 struct math_const{
-    static constexpr Type e = small_tmp::exp(static_cast<Type>(1));
+    static constexpr Type e = semi_cpp::math::exp(static_cast<Type>(1));
     static constexpr Type pi = 3.14159265358979323846;
 };
 

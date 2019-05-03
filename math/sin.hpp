@@ -19,11 +19,11 @@ namespace semi_cpp::math{
  */
 template<typename Type>
  constexpr Type sin(Type x){
-    using small_tmp::tan;
+    using semi_cpp::math::tan;
 
-    x = small_tmp::fmod(x, static_cast<Type>(2) * small_tmp::math_const<Type>::pi);
+    x = semi_cpp::math::fmod(x, static_cast<Type>(2) * semi_cpp::math::math_const<Type>::pi);
         
-    if(x == static_cast<Type>(0) || x == small_tmp::math_const<Type>::pi){
+    if(x == static_cast<Type>(0) || x == semi_cpp::math::math_const<Type>::pi){
         return static_cast<Type>(0);
     }
 

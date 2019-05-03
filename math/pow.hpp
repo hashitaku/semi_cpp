@@ -24,7 +24,7 @@ constexpr Type pow(Type a, Type x){
     if(x == static_cast<Type>(0)) return static_cast<Type>(1);
     //TODO: IEC 60559 https://cpprefjp.github.io/reference/cmath/pow.html
 
-    return small_tmp::exp(x * small_tmp::log(a));
+    return semi_cpp::math::exp(x * semi_cpp::math::log(a));
 }
 
 }

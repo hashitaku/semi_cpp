@@ -9,6 +9,7 @@
 #define SEMI_CPP_COS_HPP
 
 #include"./fmod.hpp"
+#include"./sin.hpp"
 #include"./math_const.hpp"
 
 namespace semi_cpp::math{
@@ -19,9 +20,9 @@ namespace semi_cpp::math{
  */
 template<typename Type>
 constexpr Type cos(Type x){
-    x = small_tmp::fmod(x, static_cast<Type>(2) * small_tmp::math_const<Type>::pi);
+    x = semi_cpp::math::fmod(x, static_cast<Type>(2) * semi_cpp::math::math_const<Type>::pi);
 
-    return small_tmp::sin(x + (small_tmp::math_const<Type>::pi / static_cast<Type>(2)));
+    return semi_cpp::math::sin(x + (semi_cpp::math::math_const<Type>::pi / static_cast<Type>(2)));
 }
 
 }

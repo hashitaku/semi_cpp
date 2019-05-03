@@ -21,13 +21,13 @@ namespace semi_cpp::math{
  */
 template<typename Type>
 constexpr Type tan(Type x){
-    x = small_tmp::fmod(x, small_tmp::math_const<Type>::pi);
+    x = semi_cpp::math::fmod(x, semi_cpp::math::math_const<Type>::pi);
 
-    if(x == static_cast<Type>(0) || x == small_tmp::math_const<Type>::pi){
+    if(x == static_cast<Type>(0) || x == semi_cpp::math::math_const<Type>::pi){
         return static_cast<Type>(0);
     }
 
-    if(x == small_tmp::math_const<Type>::pi / 2.0 || x == small_tmp::math_const<Type>::pi / -2.0){
+    if(x == semi_cpp::math::math_const<Type>::pi / 2.0 || x == semi_cpp::math::math_const<Type>::pi / -2.0){
         return std::numeric_limits<Type>::infinity();
     }
 
