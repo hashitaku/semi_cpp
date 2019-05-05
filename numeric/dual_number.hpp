@@ -1,8 +1,7 @@
 #ifndef SEMI_CPP_DUAL_NUM
 #define SEMI_CPP_DUAL_NUM
 
-#include<iostream>
-#include<type_traits>
+#include<ostream>
 
 namespace semi_cpp::numeric{
 

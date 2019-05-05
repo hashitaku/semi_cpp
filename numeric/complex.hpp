@@ -1,8 +1,7 @@
 #ifndef SEMI_CPP_COMPLEX
 #define SEMI_CPP_COMPLEX
 
-#include<iostream>
-#include<type_traits>
+#include<ostream>
 
 namespace semi_cpp::numeric{
 
