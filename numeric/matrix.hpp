@@ -4,6 +4,7 @@
 #include<cstddef>
 #include<iostream>
 #include<array>
+#include<tuple>
 
 namespace semi_cpp::numeric{
 
@@ -28,6 +29,37 @@ struct Matrix{
         }
 
         return retval;
+    }
+
+    constexpr std::tuple<Matrix<Tp, N, M>, Matrix<Tp, N, M>> LU() const noexcept {
+        Matrix<Tp, N, M> ret_l{};
+        Matrix<Tp, N, M> ret_u{};
+
+        static_assert(N == M, "member function LU() is only N == M");
+
+        for(size_t i = 0; i < N; i++){
+            ret_l.mat_[i][i] = Tp{1};
+        }
+
+        for(size_t i = 0; i < N; i++){
+            for(size_t j = 0; j < M; j++){
+                if(i <= j){
+                    Tp tmp{0};
+                    for(size_t k = 0; k < i; k++){
+                        tmp += ret_l.mat_[i][k] * ret_u.mat_[k][j];
+                    }
+                    ret_u.mat_[i][j] = this->mat_[i][j] - tmp;
+                }else{
+                    Tp tmp{0};
+                    for(size_t k = 0; k < j; k++){
+                        tmp += ret_l.mat_[i][k] * ret_u.mat_[k][j];
+                    }
+                    ret_l.mat_[i][j] = (this->mat_[i][j] - tmp) / ret_u.mat_[j][j];
+                }
+            }
+        }
+
+        return {ret_l, ret_u};
     }
 
     constexpr reference operator()(size_t row, size_t col){
