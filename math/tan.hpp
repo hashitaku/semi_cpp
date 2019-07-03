@@ -31,7 +31,7 @@ constexpr Type tan(Type x){
         return std::numeric_limits<Type>::infinity();
     }
 
-    int n = 12; //連分数展開の階数適当な数
+    int n = 14; //連分数展開の階数適当な数
     Type retval = static_cast<Type>(0);
     while(n > 0){
         retval = (x * x) / ((2 * n - 1) - retval);  
