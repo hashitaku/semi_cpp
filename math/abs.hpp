@@ -9,6 +9,7 @@
 #define SEMI_CPP_ABS_HPP
 
 #include<type_traits>
+#include<cstdint>
 
 namespace semi_cpp::math{
 
