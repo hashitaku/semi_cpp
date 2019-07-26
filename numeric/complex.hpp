@@ -1,6 +1,15 @@
 #ifndef SEMI_CPP_COMPLEX
 #define SEMI_CPP_COMPLEX
 
+/**
+ * @def 
+ * テンプレートパラメータTypeがcomplex<>と一致しているか判定マクロ
+ */
+#define SEMI_CPP_COMPLEX_CONCEPT(Type) \
+std::is_same_v<Type, semi_cpp::numeric::complex<float>> || \
+std::is_same_v<Type, semi_cpp::numeric::complex<double>> || \
+std::is_same_v<Type, semi_cpp::numeric::complex<long double>>
+
 #include<ostream>
 
 namespace semi_cpp::numeric{

@@ -1,6 +1,15 @@
 #ifndef SEMI_CPP_DUAL_NUM
 #define SEMI_CPP_DUAL_NUM
 
+/**
+ * @def 
+ * テンプレートパラメータTypeがdual_num<>と一致しているか判定マクロ
+ */
+#define SEMI_CPP_DUAL_NUM_CONCEPT(Type) \
+std::is_same_v<Type, semi_cpp::numeric::dual_num<float>> || \
+std::is_same_v<Type, semi_cpp::numeric::dual_num<double>> || \
+std::is_same_v<Type, semi_cpp::numeric::dual_num<long double>>
+
 #include<ostream>
 
 namespace semi_cpp::numeric{

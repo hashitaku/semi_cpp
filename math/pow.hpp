@@ -8,6 +8,8 @@
 #ifndef SEMI_CPP_POW_HPP
 #define SEMI_CPP_POW_HPP
 
+#include<type_traits>
+
 #include"./exp.hpp"
 #include"./log.hpp"
 
@@ -19,12 +21,15 @@ namespace semi_cpp::math{
  */
 template<typename Type>
 constexpr Type pow(Type a, Type x){
+    if constexpr(std::is_floating_point_v<Type>){
+        if(a == static_cast<Type>(0)) return Type{0};
+        if(x == static_cast<Type>(0)) return Type{1};
+        //TODO: IEC 60559 https://cpprefjp.github.io/reference/cmath/pow.html
 
-    if(a == static_cast<Type>(0)) return static_cast<Type>(0);
-    if(x == static_cast<Type>(0)) return static_cast<Type>(1);
-    //TODO: IEC 60559 https://cpprefjp.github.io/reference/cmath/pow.html
-
-    return semi_cpp::math::exp(x * semi_cpp::math::log(a));
+        return semi_cpp::math::exp(x * semi_cpp::math::log(a));
+    }else{
+        static_assert([](){ return false; }());
+    }
 }
 
 }
