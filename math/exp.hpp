@@ -8,6 +8,7 @@
 #ifndef SEMI_CPP_EXP_HPP
 #define SEMI_CPP_EXP_HPP
 
+#include<type_traits>
 #include<limits>
 
 namespace semi_cpp::math{
@@ -18,31 +19,26 @@ namespace semi_cpp::math{
  */
 template<typename Type>
 constexpr Type exp(Type x){
+    if constexpr(std::is_floating_point_v<Type>){
+        if(x == 0) return Type{1};
+        if(x == std::numeric_limits<Type>::infinity()) return std::numeric_limits<Type>::infinity();
+        if(x == -std::numeric_limits<Type>::infinity()) return Type{0};
 
-    if(x == 0){
-        return static_cast<Type>(1);
-    }
+        Type retval = Type{};
 
-    if(x == std::numeric_limits<Type>::infinity()){
-        return std::numeric_limits<Type>::infinity();
-    }
-
-    if(x == -std::numeric_limits<Type>::infinity()){
-        return static_cast<Type>(0);
-    }
-
-    Type retval = static_cast<Type>(0);
-
-    int n = 22; //連分数展開の階数 適当な数
+        int n = 22; //連分数展開の階数 適当な数
         
-    while(n > 0){
-        retval = (x * x) / ((4 * n + 2) + retval);
-        n--;
+        while(n > 0){
+            retval = (x * x) / ((4 * n + 2) + retval);
+            n--;
+        }
+
+        retval += static_cast<Type>(2);
+
+        return (retval + x) / (retval - x);
+    }else{
+        static_assert([](){ return false; }());
     }
-
-    retval += static_cast<Type>(2);
-
-    return (retval + x) / (retval - x);
 }
 
 }
