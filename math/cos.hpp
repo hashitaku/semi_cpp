@@ -8,6 +8,8 @@
 #ifndef SEMI_CPP_COS_HPP
 #define SEMI_CPP_COS_HPP
 
+#include<type_traits>
+
 #include"./fmod.hpp"
 #include"./sin.hpp"
 #include"./math_const.hpp"
@@ -20,9 +22,13 @@ namespace semi_cpp::math{
  */
 template<typename Type>
 constexpr Type cos(Type x){
-    x = semi_cpp::math::fmod(x, static_cast<Type>(2) * semi_cpp::math::math_const<Type>::pi);
+    if constexpr(std::is_floating_point_v<Type>){
+        x = semi_cpp::math::fmod(x, static_cast<Type>(2) * semi_cpp::math::math_const<Type>::pi);
 
-    return semi_cpp::math::sin(x + (semi_cpp::math::math_const<Type>::pi / static_cast<Type>(2)));
+        return semi_cpp::math::sin(x + (semi_cpp::math::math_const<Type>::pi / static_cast<Type>(2)));  
+    }else{
+        static_assert([](){ return false; }());
+    }
 }
 
 }

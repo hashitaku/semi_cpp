@@ -30,8 +30,8 @@ constexpr auto abs(Type x){
     }else if constexpr(std::is_integral_v<Type>){
         return x > 0 ? x : -static_cast<uintmax_t>(x);
     }else if constexpr(SEMI_CPP_COMPLEX_CONCEPT(Type)){
-        if(x.real() == 0.0) return x.imag();
-        if(x.imag() == 0.0) return x.real();
+        if(x.real() == 0.0) return semi_cpp::math::abs(x.imag());
+        if(x.imag() == 0.0) return semi_cpp::math::abs(x.real());
         if(semi_cpp::math::abs(x.imag()) > semi_cpp::math::abs(x.real())){
             auto t = x.real() / x.imag();
             return semi_cpp::math::abs(x.imag()) * semi_cpp::math::pow(1.0 + t * t, 0.5);

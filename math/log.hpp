@@ -9,6 +9,7 @@
 #define SEMI_CPP_LOG_HPP
 
 #include<limits>
+#include<type_traits>
 
 namespace semi_cpp::math{
 /**
@@ -18,28 +19,23 @@ namespace semi_cpp::math{
  */
 template<typename Type>
 constexpr Type log(Type x){
+    if constexpr(std::is_floating_point_v<Type>){
+        if(x == 1) return 0;
+        if(x == 0) return -std::numeric_limits<Type>::infinity();
+        if(x < 0) return std::numeric_limits<Type>::quiet_NaN();
 
-    if(x == 1){
-        return 0;
-    }
+        x = x - 1;
+        int n = 13; //連分数展開の階数 適当な数
+        Type retval = static_cast<Type>(0);
+        while(n > 0){
+            retval = (n * x) / ((n * x / ((2 * n + 1) + retval)) + 2);
+            n--;
+        }
 
-    if(x == 0){
-        return -std::numeric_limits<Type>::infinity();
+        return x / (retval + 1);
+    }else{
+        static_assert([](){ return false; }());
     }
-        
-    if(x < 0){
-        return std::numeric_limits<Type>::quiet_NaN();
-    }
-
-    x = x - 1; // u = x - 1なので
-    int n = 13; //連分数展開の階数 適当な数
-    Type retval = static_cast<Type>(0);
-    while(n > 0){
-        retval = (n * x) / ((n * x / ((2 * n + 1) + retval)) + 2);
-        n--;
-    }
-
-    return x / (retval + 1);
 }
 
 }

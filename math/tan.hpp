@@ -8,10 +8,13 @@
 #ifndef SEMI_CPP_TAN_HPP
 #define SEMI_CPP_TAN_HPP
 
+#include<limits>
+#include<type_traits>
+
 #include"./math_const.hpp"
 #include"./fmod.hpp"
 
-#include<limits>
+#include"../numeric/complex.hpp"
 
 namespace semi_cpp::math{
 /**
@@ -21,24 +24,28 @@ namespace semi_cpp::math{
  */
 template<typename Type>
 constexpr Type tan(Type x){
-    x = semi_cpp::math::fmod(x, semi_cpp::math::math_const<Type>::pi);
+    if constexpr(std::is_floating_point_v<Type>){
+        x = semi_cpp::math::fmod(x, semi_cpp::math::math_const<Type>::pi);
 
-    if(x == static_cast<Type>(0) || x == semi_cpp::math::math_const<Type>::pi){
-        return static_cast<Type>(0);
+        if(x == Type{} || x == semi_cpp::math::math_const<Type>::pi){
+            return Type{};
+        }
+
+        if(x == semi_cpp::math::math_const<Type>::pi / 2.0 || x == semi_cpp::math::math_const<Type>::pi / -2.0){
+            return std::numeric_limits<Type>::infinity();
+        }
+
+        int n = 14; //連分数展開の階数適当な数
+        Type retval{};
+        while(n > 0){
+            retval = (x * x) / ((2.0 * n - 1) - retval);  
+            n--;
+        }
+
+        return retval / x;
+    }else{
+        static_assert([](){ return false; }());
     }
-
-    if(x == semi_cpp::math::math_const<Type>::pi / 2.0 || x == semi_cpp::math::math_const<Type>::pi / -2.0){
-        return std::numeric_limits<Type>::infinity();
-    }
-
-    int n = 14; //連分数展開の階数適当な数
-    Type retval = static_cast<Type>(0);
-    while(n > 0){
-        retval = (x * x) / ((2 * n - 1) - retval);  
-        n--;
-    }
-
-    return retval / x;
 }
 
 }
