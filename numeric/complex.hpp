@@ -42,6 +42,9 @@ class complex{
         constexpr Tp real() const { return re; }
         constexpr Tp imag() const { return im; }
 
+        void real(Tp a){ re = a; }
+        void imag(Tp a){ im = a; }
+
         constexpr complex<Tp>& operator+=(const Tp& a){
             re += a;
             return *this;
@@ -128,6 +131,8 @@ constexpr Tp abs(const complex<Tp>& z){
         return semi_cpp::math::abs(z.real()) * semi_cpp::math::pow(1.0 + t * t, 0.5);           
     }
 }
+
+
 
 template<typename Tp>
 constexpr complex<Tp> operator+(const complex<Tp>& x, const complex<Tp>& y){
