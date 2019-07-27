@@ -14,7 +14,7 @@
 #include"../numeric/matrix.hpp"
 
 namespace semi_cpp{
-    inline namespace numeric{}
+    using namespace semi_cpp::numeric;
 }
 
 #endif //SEMI_NUMERIC_HPP

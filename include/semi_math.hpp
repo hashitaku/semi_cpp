@@ -20,7 +20,7 @@
 #include"./../math/tan.hpp"
 
 namespace semi_cpp{
-    inline namespace math{}
+    using namespace semi_cpp::math;
 }
 
 #endif //SEMI_MATH_HPP
