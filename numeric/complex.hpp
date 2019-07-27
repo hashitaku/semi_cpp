@@ -132,7 +132,15 @@ constexpr Tp abs(const complex<Tp>& z){
     }
 }
 
+template<typename Tp>
+constexpr complex<Tp> conj(const complex<Tp>& z){
+    return {z.real(), -z.imag()};
+}
 
+template<typename Tp>
+constexpr Tp norm(const complex<Tp>& z){
+    return z * conj(z);
+}
 
 template<typename Tp>
 constexpr complex<Tp> operator+(const complex<Tp>& x, const complex<Tp>& y){
