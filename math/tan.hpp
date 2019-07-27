@@ -14,8 +14,6 @@
 #include"./math_const.hpp"
 #include"./fmod.hpp"
 
-#include"../numeric/complex.hpp"
-
 namespace semi_cpp::math{
 /**
  * @brief template constexpr funtion "tan"
