@@ -1,3 +1,10 @@
+/**
+ * @file dual_number.hpp
+ * @brief constexpr dual_number class
+ * @author hashitaku
+ * @data 2019/7/27
+ */
+
 #ifndef SEMI_CPP_DUAL_NUM
 #define SEMI_CPP_DUAL_NUM
 
@@ -14,6 +21,11 @@ std::is_same_v<Type, semi_cpp::numeric::dual_num<long double>>
 
 namespace semi_cpp::numeric{
 
+
+/**
+ * @class dual_num
+ * @brief constexpr dual_number class
+ */
 template<typename Tp>
 class dual_num{
     private:
