@@ -1,3 +1,10 @@
+/**
+ * @file matrix.hpp
+ * @brief constexpr matrix class
+ * @author hashitaku
+ * @data 2019/7/27
+ */
+
 #ifndef SEMI_CPP_MATRIX
 #define SEMI_CPP_MATRIX
 
@@ -8,6 +15,10 @@
 
 namespace semi_cpp::numeric{
 
+/**
+ * @struct matrix
+ * @brief constexpr matrix class
+ */
 template<typename Tp, size_t N, size_t M>
 struct Matrix{
     Tp mat_[N][M];
