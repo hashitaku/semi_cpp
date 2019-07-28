@@ -18,7 +18,7 @@ namespace semi_cpp::math{
 template<typename Type>
 constexpr Type atan(Type x){
     if constexpr(std::is_floating_point_v<Type>){
-        Type retval = static_cast<Type>(0);
+        Type retval{};
 
         int n = 24; //連分数展開の階数 適当な数
 
@@ -30,7 +30,7 @@ constexpr Type atan(Type x){
                 n--;
             }
 
-            retval = (-semi_cpp::math::math_const<Type>::pi / 2.0) - (x / (1 + retval));
+            retval = (-semi_cpp::math::math_const<Type>::pi_2) - (x / (1 + retval));
         }else if(x > 1){
             x = 1 / x;
 
@@ -39,7 +39,7 @@ constexpr Type atan(Type x){
                 n--;
             }
 
-            retval = (semi_cpp::math::math_const<Type>::pi / 2.0) - (x / (1 + retval));
+            retval = (semi_cpp::math::math_const<Type>::pi_2) - (x / (1 + retval));
         }else{
             while(n > 0){
                 retval = ((n * n) * (x * x)) / ((2 * n + 1) + retval);

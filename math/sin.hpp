@@ -23,7 +23,7 @@ template<typename Type>
 constexpr Type sin(Type x){
     using semi_cpp::math::tan;
     if constexpr(std::is_floating_point_v<Type>){
-        x = semi_cpp::math::fmod(x, static_cast<Type>(2) * semi_cpp::math::math_const<Type>::pi);
+        x = semi_cpp::math::fmod(x, 2.0 * semi_cpp::math::math_const<Type>::pi);
     
         if(x == static_cast<Type>(0) || x == semi_cpp::math::math_const<Type>::pi) return Type{0};
     

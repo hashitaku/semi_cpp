@@ -25,7 +25,7 @@ constexpr Type cos(Type x){
     if constexpr(std::is_floating_point_v<Type>){
         x = semi_cpp::math::fmod(x, static_cast<Type>(2) * semi_cpp::math::math_const<Type>::pi);
 
-        return semi_cpp::math::sin(x + (semi_cpp::math::math_const<Type>::pi / static_cast<Type>(2)));  
+        return semi_cpp::math::sin(x + semi_cpp::math::math_const<Type>::pi_2);  
     }else{
         static_assert([](){ return false; }());
     }
