@@ -26,7 +26,7 @@ constexpr Type log(Type x){
 
         x = x - 1;
         int n = 13; //連分数展開の階数 適当な数
-        Type retval = static_cast<Type>(0);
+        Type retval{};
         while(n > 0){
             retval = (n * x) / ((n * x / ((2 * n + 1) + retval)) + 2);
             n--;

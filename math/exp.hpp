@@ -33,7 +33,7 @@ constexpr Type exp(Type x){
             n--;
         }
 
-        retval += static_cast<Type>(2);
+        retval += Type{2};
 
         return (retval + x) / (retval - x);
     }else{

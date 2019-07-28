@@ -29,7 +29,7 @@ constexpr Type tan(Type x){
             return Type{};
         }
 
-        if(x == semi_cpp::math::math_const<Type>::pi / 2.0 || x == semi_cpp::math::math_const<Type>::pi / -2.0){
+        if(x == semi_cpp::math::math_const<Type>::pi_2 || x == -semi_cpp::math::math_const<Type>::pi_2){
             return std::numeric_limits<Type>::infinity();
         }
 
