@@ -16,7 +16,7 @@ namespace semi_cpp::math{
  * @brief template struct math_const
  * @details 数学定数を定義 double, float, long doubleの特殊化
  */
-template<typename Type>
+template<typename Type = double>
 struct math_const;
 
 template<>
