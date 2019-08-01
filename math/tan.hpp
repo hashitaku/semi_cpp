@@ -23,6 +23,10 @@ namespace semi_cpp::math{
 template<typename Type>
 constexpr Type tan(Type x){
     if constexpr(std::is_floating_point_v<Type>){
+        if(x == +std::numeric_limits<Type>::infinity() || x == -std::numeric_limits<Type>::infinity()){
+            return std::numeric_limits<Type>::quiet_NaN();
+        }
+
         x = semi_cpp::math::fmod(x, semi_cpp::math::math_const<Type>::pi);
 
         if(x == Type{} || x == semi_cpp::math::math_const<Type>::pi){
@@ -36,7 +40,7 @@ constexpr Type tan(Type x){
         int n = 14; //連分数展開の階数適当な数
         Type retval{};
         while(n > 0){
-            retval = (x * x) / ((2.0 * n - 1) - retval);  
+            retval = (x * x) / ((2.0 * n - 1) - retval);
             n--;
         }
 
