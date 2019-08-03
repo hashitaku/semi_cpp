@@ -9,11 +9,6 @@ file(GLOB ALL_CPP_FILE "*.cpp")
 
 add_executable(semi_cpp_test ${ALL_CPP_FILE})
 
-find_package(GTest REQUIRED)
-
-target_link_libraries(semi_cpp_test
-                      PRIVATE
-                      GTest::GTest
-                      GTest::Main
-)
+add_subdirectory(lib/googletest)
+target_link_libraries(semi_cpp_test gtest gtest_main)
 
