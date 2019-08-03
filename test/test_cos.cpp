@@ -17,7 +17,7 @@ TEST(TestCos, TestInf){
 }
 
 TEST(TestCos, TestDouble){
-    constexpr auto val = semi_cpp::math::cos(1.5);
+    constexpr auto val = semi_cpp::math::cos(0.5);
 
-    ASSERT_DOUBLE_EQ(val, std::cos(1.5));
+    ASSERT_DOUBLE_EQ(val, std::cos(0.5));
 }
