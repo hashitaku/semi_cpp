@@ -9,6 +9,7 @@
 #define SEMI_CPP_COS_HPP
 
 #include<type_traits>
+#include<limits>
 
 #include"./fmod.hpp"
 #include"./sin.hpp"
@@ -23,6 +24,8 @@ namespace semi_cpp::math{
 template<typename Type>
 constexpr Type cos(Type x){
     if constexpr(std::is_floating_point_v<Type>){
+        if(x == std::numeric_limits<Type>::infinity()) return std::numeric_limits<Type>::quiet_NaN();
+
         x = semi_cpp::math::fmod(x, static_cast<Type>(2) * semi_cpp::math::math_const<Type>::pi);
 
         return semi_cpp::math::sin(x + semi_cpp::math::math_const<Type>::pi_2);  
